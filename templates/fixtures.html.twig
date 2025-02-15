@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The Rugby Highlights - Fixtures{% endblock %}
+{% block ogTitle %}"The Rugby Highlights - Fixtures"{% endblock %}
+{% block description %}"Look forward to the upcoming fixtures across the world of international and club rugby!"{% endblock %}
+{% block ogDescription %}"Look forward to the upcoming fixtures across the world of international and club rugby!"{% endblock %}
+{% block canonical %}"https://therugbyhighlights.com/fixtures"{% endblock %}
+
+{% block body %}
+    <h1 class="title-text">Fixtures</h1>
+    <div id="fixtures"></div>
+{% endblock %}
+
+    {% block footer %}
+        <footer>
+            <div class="footer-content" style="margin: 10px auto 0 !important;">
+                <p style="font-weight: 100; text-align: center">Kick-off time is displayed in Central European Time (CET).</p>
+                <br>
+                <p>&copy; <span id="year"></span> The Rugby Highlights.</p>
+            </div>
+        </footer>
+    {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('fixtures') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('fixtures') }}
+{% endblock %}

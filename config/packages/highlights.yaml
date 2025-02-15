@@ -1,0 +1,68 @@
+parameters:
+  highlights_config:
+#     Club Fixtures
+    - channelId: 'UU-S6cXyil4qbIPfb2hrcH4w'
+      leagueName: 'United Rugby Championship'
+      searchTerm: 'Highlights'
+      active: true
+    - channelId: 'UUDOGExGCsrrt_RrGDgLuMww'
+      leagueName: 'Super Rugby'
+      searchTerm: 'Super Rugby Pacific 2025'
+      active: true
+    - channelId: 'UUuIZRMChWOb0JZu7VvhlMWg'
+      leagueName: 'Japan League One - Division One'
+      searchTerm: '公式ハイライト'
+      active: true
+    - channelId: 'UUuIZRMChWOb0JZu7VvhlMWg'
+      leagueName: 'Japan League One - Division Two'
+      searchTerm: '公式ハイライト'
+      active: true
+    - channelId: 'UUuIZRMChWOb0JZu7VvhlMWg'
+      leagueName: 'Japan League One - Division Three'
+      searchTerm: '公式ハイライト'
+      active: true
+    - channelId: 'UULbW1klIl3T1XCp8hHYZGMw'
+      leagueName: 'Premiership Rugby'
+      searchTerm: 'HIGHLIGHTS'
+      active: true
+    - channelId: 'UUWrD2VhZdO-_W8QDBxiXmeg'
+      leagueName: 'Top 14'
+      searchTerm: 'TOP 14 Saison 2024-2025'
+      active: true
+    - channelId: 'UUu98ro1AIOu-4wtZxDRS6Tg'
+      leagueName: 'Pro D2'
+      searchTerm: 'PRO D2 Saison 2024-2025'
+      active: true
+    - channelId: 'UUIynwDVqRK7KTUy72_kSBhA'
+      leagueName: 'Major League Rugby'
+      searchTerm: 'HIGHLIGHTS'
+      active: true
+    - channelId: 'UUqn9RhigXvnvVUkKm5iAjxg'
+      leagueName: 'Champions Cup'
+      searchTerm: 'Instant Highlights'
+      active: false
+    - channelId: 'UUqn9RhigXvnvVUkKm5iAjxg'
+      leagueName: 'Challenge Cup'
+      searchTerm: 'Instant Highlights'
+      active: false
+    - channelId: 'UUsAPiUMyBjtKamxYGbSUnLA'
+      leagueName: 'Bunnings NPC'
+      searchTerm: 'Bunnings NPC 2024'
+      active: false
+    - channelId: 'UUsAPiUMyBjtKamxYGbSUnLA'
+      leagueName: 'Farah Palmer Cup'
+      searchTerm: 'Farah Palmer Cup 2024'
+      active: false
+    - channelId: 'UUVI5iqtQOsWZwtAg1o3SIAQ'
+      leagueName: 'Currie Cup'
+      searchTerm: 'Currie Cup'
+      active: false
+#     International Fixtures
+    - channelId: 'UUDOGExGCsrrt_RrGDgLuMww'
+      leagueName: 'The Rugby Championship'
+      searchTerm: 'The Rugby Championship 2024'
+      active: false
+    - channelId: 'UUE28rwYoaV7jvU6GVzdu_GQ'
+      leagueName: 'Pacific Nations Cup'
+      searchTerm: 'Match Highlights'
+      active: false

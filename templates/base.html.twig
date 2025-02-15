@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNFXRDJ6CM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MNFXRDJ6CM');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:url" content="https://www.therugbyhighlights.com/">
+    <meta property="og:title" content={% block ogTitle %}"The Rugby Highlights - Spoiler-Free Rugby Highlights"{% endblock %}>
+    <meta property="og:description" content={% block ogDescription %}"Relive the action from the best rugby leagues and competitions around the world, spoiler-free! Catch up on the Six Nations, Super Rugby and more!"{% endblock %}>
+    <meta name="description" content={% block description %}"Relive the action from the best rugby leagues and competitions around the world, spoiler-free! Catch up on the Six Nations, Super Rugby and more!"{% endblock %}>
+    <meta name="keywords" content="rugby highlights, spoiler-free rugby highlights, spoiler free rugby highlights">
+    <title>{% block title %}The Rugby Highlights - Spoiler-Free Rugby Highlights{% endblock %}</title>
+    <link rel="icon" href="{% block icon %}{{ asset('/assets/img/favicon.ico') }}{% endblock %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/assets/img/apple-touch-icon.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/assets/lib/sweet-modal/jquery.sweet-modal.min.css') }}"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="canonical" href={% block canonical %}"https://therugbyhighlights.com"{% endblock %}/>
+    {% block stylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+</head>
+<body>
+<header>
+    <a href="{{ path('rugby') }}" class="title">
+        The Rugby Highlights
+    </a>
+
+    <div class="bx bx-menu" id="menu-icon"></div>
+
+    <ul class="navbar">
+        <li><a href="{{ path('rugby') }}">Home</a></li>
+        <li><a href="{{ path('fixtures') }}">Fixtures</a></li>
+        <li><a href="{{ path('archive') }}">Archive</a></li>
+    </ul>
+</header>
+    {% block body %}
+    {% endblock %}
+
+    {% block footer %}
+    <footer>
+        <div class="footer-content">
+            <h2>About</h2>
+            <br>
+            <p style="font-weight: 100; text-align: center">The Rugby Highlights brings you all the action without the spoilers!<br> Catch up on the latest matches
+                across the top rugby leagues and competitions, including the Six Nations, Super Rugby, United Rugby
+                Championship & more.</p>
+            <br>
+            <a href="https://www.dtmts.com" title="Concept Inspiration" target="_blank">Concept Inspired by Don't Tell Me The Score</a>
+            <br>
+            <br>
+            <p>&copy; <span id="year"></span> The Rugby Highlights.</p>
+        </div>
+    </footer>
+    {% endblock %}
+<script type="text/javascript" src="{{ asset('/assets/js/script.js') }}"></script>
+<script src="{{ asset('/assets/js/jquery-3.7.1.min.js') }}"></script>
+<script src="{{ asset('/assets/lib/sweet-modal/jquery.sweet-modal.min.js') }}"></script>
+<script>
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
+</body>
+</html>

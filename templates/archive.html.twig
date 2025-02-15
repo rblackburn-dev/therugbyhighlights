@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The Rugby Highlights - Archive{% endblock %}
+{% block ogTitle %}"The Rugby Highlights - Archive"{% endblock %}
+{% block description %}"Catch up on all highlights from the current season across all leagues and competitions available!"{% endblock %}
+{% block ogDescription %}"Catch up on all highlights from the current season across all leagues and competitions available!"{% endblock %}
+{% block canonical %}"https://therugbyhighlights.com/archive"{% endblock %}
+
+{% block body %}
+    <h1 class="title-text">Archive</h1>
+    <div id="archive"></div>
+{% endblock %}
+
+    {% block footer %}
+        <footer>
+            <div class="footer-content" style="margin: 10px auto 0 !important;">
+                <p style="font-weight: 100; text-align: center">Kick-off time is displayed in Central European Time (CET).</p>
+                <br>
+                <p>&copy; <span id="year"></span> The Rugby Highlights.</p>
+            </div>
+        </footer>
+    {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('archive') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('archive') }}
+{% endblock %}
