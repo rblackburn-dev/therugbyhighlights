@@ -24,7 +24,7 @@ class FixtureRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get recent fixtures for the homepage
+     * Get recent fixtures
      *
      * @return mixed
      * @throws DateMalformedStringException
@@ -44,97 +44,109 @@ class FixtureRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get past fixtures by season for the archive
+     * Get filtered fixtures
+     *
+     * @param array $criteria
+     * @return mixed
+     */
+    private function getFilteredFixtures(array $criteria = []): mixed
+    {
+        $today = new DateTime();
+
+        $qb = $this->createQueryBuilder('f')
+            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights, f.season')
+            ->andWhere('f.kickOff > :today')
+            ->setParameter('today', $today)
+            ->orderBy('f.kickOff', 'ASC');
+
+        if (!empty($criteria['leagues'])) {
+            $qb->andWhere('f.league IN (:leagues)')
+                ->setParameter('leagues', $criteria['leagues']);
+        }
+
+        if (!empty($criteria['teams'])) {
+            $qb->andWhere('f.homeTeam IN (:teams) OR f.awayTeam IN (:teams)')
+                ->setParameter('teams', $criteria['teams']);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getFixtures(): mixed
+    {
+        return $this->getFilteredFixtures();
+    }
+
+    public function getFixturesByLeague(array $leagues): mixed
+    {
+        return $this->getFilteredFixtures(['leagues' => $leagues]);
+    }
+
+    public function getFixturesByTeam(array $teams): mixed
+    {
+        return $this->getFilteredFixtures(['teams' => $teams]);
+    }
+
+    /**
+     * Get filtered archive fixtures
      *
      * @param string $season
+     * @param array $criteria
      * @return mixed
      * @throws DateMalformedStringException
      */
-    public function getPastFixturesBySeason(string $season): mixed
+    private function getArchiveFilteredFixtures(string $season, array $criteria = []): mixed
     {
         $date = new DateTime();
         $date->modify('-' . 4 . ' days');
 
-        return $this->createQueryBuilder('f')
+        $qb = $this->createQueryBuilder('f')
             ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights, f.season')
             ->andWhere('f.kickOff < :date')
             ->setParameter('date', $date)
             ->andWhere('f.season = :season')
             ->setParameter('season', $season)
-            ->orderBy('f.kickOff', 'DESC')
-            ->getQuery()
-            ->getResult();
+            ->orderBy('f.kickOff', 'DESC');
+
+        if (!empty($criteria['leagues'])) {
+            $qb->andWhere('f.league IN (:leagues)')
+                ->setParameter('leagues', $criteria['leagues']);
+        }
+
+        if (!empty($criteria['teams'])) {
+            $qb->andWhere('f.homeTeam IN (:teams) OR f.awayTeam IN (:teams)')
+                ->setParameter('teams', $criteria['teams']);
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     /**
-     * Get past fixtures by season and league for the archive
-     *
-     * @param string $season
-     * @param string $league
-     * @return mixed
      * @throws DateMalformedStringException
      */
-    public function getPastFixturesByLeague(string $season, string $league): mixed
+    public function getArchiveFixtures(string $season): mixed
     {
-        $date = new DateTime();
-        $date->modify('-' . 4 . ' days');
-
-        return $this->createQueryBuilder('f')
-            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights, f.season')
-            ->andWhere('f.kickOff < :date')
-            ->setParameter('date', $date)
-            ->andWhere('f.season = :season')
-            ->setParameter('season', $season)
-            ->andWhere('f.league = :league')
-            ->setParameter('league', $league)
-            ->orderBy('f.kickOff', 'DESC')
-            ->getQuery()
-            ->getResult();
+        return $this->getArchiveFilteredFixtures($season);
     }
 
     /**
-     * Get leagues to be used in the league filter on the archive and fixtures page
-     *
-     * @return mixed
-     */
-    public function getLeagues(): mixed
-    {
-        return $this->createQueryBuilder('f')
-            ->select('DISTINCT f.league')
-            ->orderBy('f.league', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * Get past fixtures by season and team for the archive
-     *
-     * @param string $season
-     * @param string $team
-     * @return mixed
      * @throws DateMalformedStringException
      */
-    public function getPastFixturesByTeam(string $season, string $team): mixed
+    public function getArchiveFixturesByLeague(string $season, array $leagues): mixed
     {
-        $date = new DateTime();
-        $date->modify('-' . 4 . ' days');
-
-        return $this->createQueryBuilder('f')
-            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights, f.season')
-            ->andWhere('f.homeTeam = :team')
-            ->orWhere('f.awayTeam = :team')
-            ->setParameter('team', $team)
-            ->andWhere('f.kickOff < :date')
-            ->setParameter('date', $date)
-            ->andWhere('f.season = :season')
-            ->setParameter('season', $season)
-            ->orderBy('f.kickOff', 'DESC')
-            ->getQuery()
-            ->getResult();
+        return $this->getArchiveFilteredFixtures($season, ['leagues' => $leagues]);
     }
 
     /**
-     * Get teams to be used in the team filter on the archive and fixtures page
+     * @throws DateMalformedStringException
+     */
+    public function getArchiveFixturesByTeam(string $season, array $teams): mixed
+    {
+        return $this->getArchiveFilteredFixtures($season, ['teams' => $teams]);
+    }
+
+    /**
+     * Get teams to be used in the filters
      *
      * @return array
      */
@@ -163,64 +175,21 @@ class FixtureRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get fixtures for the fixtures page
+     * Get leagues to be used in the filters
      *
-     * @return mixed
+     * @return array
      */
-    public function getFixtures(): mixed
+    public function getLeagues(): array
     {
-        $today = new DateTime();
-
-        return $this->createQueryBuilder('f')
-            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights, f.season')
-            ->andWhere('f.kickOff > :today')
-            ->setParameter('today', $today)
-            ->orderBy('f.kickOff', 'ASC')
+        $result = $this->createQueryBuilder('f')
+            ->select('DISTINCT f.league')
+            ->orderBy('f.league', 'ASC')
             ->getQuery()
-            ->getResult();
-    }
+            ->getArrayResult();
 
-    /**
-     * Get fixtures by league
-     *
-     * @param string $league
-     * @return mixed
-     */
-    public function getFixturesByLeague(string $league): mixed
-    {
-        $today = new DateTime();
-
-        return $this->createQueryBuilder('f')
-            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights, f.season')
-            ->andWhere('f.league = :league')
-            ->setParameter('league', $league)
-            ->andWhere('f.kickOff > :today')
-            ->setParameter('today', $today)
-            ->orderBy('f.kickOff', 'ASC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * Get fixtures by team
-     *
-     * @param string $team
-     * @return mixed
-     */
-    public function getFixturesByTeam(string $team): mixed
-    {
-        $today = new DateTime();
-
-        return $this->createQueryBuilder('f')
-            ->select('f.id, f.league, f.homeTeam, f.awayTeam, f.kickOff, f.highlights, f.season')
-            ->andWhere('f.homeTeam = :team')
-            ->orWhere('f.awayTeam = :team')
-            ->setParameter('team', $team)
-            ->andWhere('f.kickOff > :today')
-            ->setParameter('today', $today)
-            ->orderBy('f.kickOff', 'ASC')
-            ->getQuery()
-            ->getResult();
+        return array_map(function ($item) {
+            return $item['league'];
+        }, $result);
     }
 
     /**

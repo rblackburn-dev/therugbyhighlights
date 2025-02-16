@@ -1,14 +1,10 @@
 <template>
   <section>
-    <league-filter-component
-        @filter-league="filterLeague"
-        :leagues="leagues"
-        :page="page"
-    />
-
-    <team-filter-component
-        @filter-team="filterTeam"
+    <filter-component
+        @get-fixtures="getFixtures"
+        @toggle-filter="toggleFilter"
         :teams="teams"
+        :leagues="leagues"
         :page="page"
     />
 
@@ -21,8 +17,7 @@
 
 <script>
 import FixtureComponent from '../components/fixture';
-import LeagueFilterComponent from "../components/leagueFilter.vue";
-import TeamFilterComponent from "../components/teamFilter.vue";
+import FilterComponent from "../components/filter.vue";
 
 export default {
   name: 'Fixtures',
@@ -31,37 +26,24 @@ export default {
       fixtures: [],
       page: 'Fixtures',
       leagues: [],
-      teams: []
+      teams: [],
+      currentFilter: 'team',
     };
   },
   components: {
-    FixtureComponent,
-    LeagueFilterComponent,
-    TeamFilterComponent
+    FilterComponent,
+    FixtureComponent
   },
   methods: {
-    getFixtures: function() {
+    getFixtures: function(filters, currentFilter) {
+      this.toggleFilter(currentFilter);
       $.ajax({
         type: "GET",
         url: "/rugby/getFixtures/",
-        success: (data) => {
-          this.fixtures = data;
-        }
-      })
-    },
-    filterLeague(league) {
-      $.ajax({
-        type: "GET",
-        url: "/rugby/getFixtures/" + league,
-        success: (data) => {
-          this.fixtures = data;
-        }
-      })
-    },
-    filterTeam(team) {
-      $.ajax({
-        type: "GET",
-        url: "/rugby/getFixturesByTeam/" + team,
+        data: {
+          'filters' : JSON.stringify(filters),
+          'currentFilter': this.currentFilter
+        },
         success: (data) => {
           this.fixtures = data;
         }
@@ -84,12 +66,17 @@ export default {
           this.teams = data;
         }
       })
+    },
+    toggleFilter: function (currentFilter) {
+      if (currentFilter !== undefined) {
+        this.currentFilter = currentFilter;
+      }
     }
   },
   created() {
     this.getFixtures();
-    this.getLeagues();
     this.getTeams();
+    this.getLeagues();
   }
 }
 </script>

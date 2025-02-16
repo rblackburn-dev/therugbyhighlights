@@ -62,7 +62,7 @@ export default {
     }
   },
   methods: {
-    getHighlightsVideo(highlights, homeTeam, awayTeam, league) {
+    getHighlightsVideo(highlights, homeTeam, awayTeam) {
       const header = document.querySelector("header");
 
       header.classList.toggle ("hide-header");
@@ -75,7 +75,7 @@ export default {
         $.sweetModal({
           content: '<h1>Highlights unavailable, apologies for the inconvenience.</h1>',
         });
-      } else if(league === 'Top 14' || league === 'Pro D2') {
+      } else if (highlights.includes("watch?v=")) {
         $.sweetModal({
           content: '<a href="' + highlights + '" target="_blank"><svg class="play-button" xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24">\n' +
               '    <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>\n' +
@@ -111,26 +111,9 @@ export default {
     }
   },
   mounted() {
-    // Simulate loading process
     setTimeout(() => {
-      this.isLoading = false; // Set to false when loading is complete
-    }, 1000); // Adjust the timeout according to your actual loading time
+      this.isLoading = false;
+    }, 1000);
   }
 }
 </script>
-
-<style>
-.play-button {
-  fill: rgba(0, 0, 0, 1);
-  transition: fill 0.3s ease;
-}
-
-.play-button:hover {
-  fill: rgba(63, 52, 52, 0.5);
-}
-
-.league-text {
-  font-size: 16px;
-  font-weight: 100;
-}
-</style>
