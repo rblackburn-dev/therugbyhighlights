@@ -61,85 +61,71 @@ export default {
       dateThreeDaysAgo: '',
       dateFourDaysAgo: '',
       fixtures: [],
-      index: 0
     };
   },
   components: {
     FixtureComponent,
-    DateComponent
+    DateComponent,
   },
   computed: {
+    getFixturesForDaysAgo() {
+      return (daysAgo) => {
+        const date = new Date();
+        date.setDate(date.getDate() - daysAgo);
+        const localDate = this.formatLocalDate(date);
+
+        return this.fixtures.filter(fixture => {
+          const fixtureDate = new Date(fixture.kickOff.date);
+          return this.formatLocalDate(fixtureDate) === localDate;
+        });
+      };
+    },
+
     todayFixtures() {
-      const today = new Date();
-
-      const timezoneOffset = today.getTimezoneOffset() * 60000;
-      const localDate = new Date(today - timezoneOffset).toISOString().slice(0, 10);
-
-      return this.fixtures.filter(fixture => {
-        const fixtureDate = new Date(fixture.kickOff.date);
-        const fixtureOffset = fixtureDate.getTimezoneOffset() * 60000;
-        const fixtureLocalDate = new Date(fixtureDate - fixtureOffset).toISOString().slice(0, 10);
-
-        return fixtureLocalDate === localDate;
-      });
+      return this.getFixturesForDaysAgo(0);
     },
     yesterdayFixtures() {
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      const yesterdayDate = yesterday.toISOString().slice(0, 10);
-      return this.fixtures.filter(fixture => fixture.kickOff.date.slice(0, 10) === yesterdayDate);
+      return this.getFixturesForDaysAgo(1);
     },
     twoDaysAgoFixtures() {
-      const twoDaysAgo = new Date();
-      twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
-      const twoDaysAgoDate = twoDaysAgo.toISOString().slice(0, 10);
-      return this.fixtures.filter(fixture => fixture.kickOff.date.slice(0, 10) === twoDaysAgoDate);
+      return this.getFixturesForDaysAgo(2);
     },
     threeDaysAgoFixtures() {
-      const threeDaysAgo = new Date();
-      threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-      const threeDaysAgoDate = threeDaysAgo.toISOString().slice(0, 10);
-      return this.fixtures.filter(fixture => fixture.kickOff.date.slice(0, 10) === threeDaysAgoDate);
+      return this.getFixturesForDaysAgo(3);
     },
     fourDaysAgoFixtures() {
-      const fourDaysAgo = new Date();
-      fourDaysAgo.setDate(fourDaysAgo.getDate() - 4);
-      const fourDaysAgoDate = fourDaysAgo.toISOString().slice(0, 10);
-      return this.fixtures.filter(fixture => fixture.kickOff.date.slice(0, 10) === fourDaysAgoDate);
-    }
+      return this.getFixturesForDaysAgo(4);
+    },
   },
   methods: {
+    formatLocalDate(date) {
+      return new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+    },
     getDates() {
       const today = new Date();
-      const yesterday = new Date(today);
-      const twoDaysAgo = new Date(today);
-      const threeDaysAgo = new Date(today);
-      const fourDaysAgo = new Date(today);
 
-      yesterday.setDate(today.getDate() - 1);
-      twoDaysAgo.setDate(today.getDate() - 2);
-      threeDaysAgo.setDate(today.getDate() - 3);
-      fourDaysAgo.setDate(today.getDate() - 4);
+      const days = [0, 1, 2, 3, 4];
+      const dateKeys = ['dateToday', 'dateYesterday', 'dateTwoDaysAgo', 'dateThreeDaysAgo', 'dateFourDaysAgo'];
 
-      this.dateToday = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
-      this.dateYesterday = yesterday.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
-      this.dateTwoDaysAgo = twoDaysAgo.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
-      this.dateThreeDaysAgo = threeDaysAgo.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
-      this.dateFourDaysAgo = fourDaysAgo.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+      days.forEach((daysAgo, index) => {
+        const date = new Date(today);
+        date.setDate(date.getDate() - daysAgo);
+        this[dateKeys[index]] = this.formatLocalDate(date);
+      });
     },
-    getFixtures: function() {
+    getFixtures() {
       $.ajax({
         type: "GET",
         url: "/rugby/getRecentFixtures/",
         success: (data) => {
           this.fixtures = data;
         }
-      })
-    }
+      });
+    },
   },
   created() {
     this.getDates();
     this.getFixtures();
   }
-}
+};
 </script>
