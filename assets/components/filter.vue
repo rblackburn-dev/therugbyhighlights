@@ -42,6 +42,9 @@
               <option :value="'2024-2025'">
                 2024-2025
               </option>
+              <option :value="'2025-2026'">
+                2025-2026
+              </option>
             </select>
           </div>
         </div>
@@ -75,7 +78,7 @@ export default {
       currentFilter: 'team',
       selectedTeams: [],
       selectedLeagues: [],
-      selectedSeason: '2024-2025',
+      selectedSeason: '2025-2026',
       showModal: false
     };
   },

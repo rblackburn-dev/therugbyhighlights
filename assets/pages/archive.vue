@@ -28,7 +28,7 @@ export default {
       page: 'Archive',
       leagues: [],
       teams: [],
-      currentSeason: '2024-2025',
+      currentSeason: '2025-2026',
       currentFilter: 'team',
     };
   },
