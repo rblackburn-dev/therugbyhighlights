@@ -1,14 +1,49 @@
 parameters:
   highlights_config:
-#     Club Fixtures
+    #     Club Fixtures
+    #     Europe
     - channelId: 'UU-S6cXyil4qbIPfb2hrcH4w'
       leagueName: 'United Rugby Championship'
       searchTerm: 'Highlights'
       active: false
+    - channelId: 'UULbW1klIl3T1XCp8hHYZGMw'
+      leagueName: 'Premiership Rugby'
+      searchTerm: 'HIGHLIGHTS'
+      active: false
+    - channelId: 'UUWrD2VhZdO-_W8QDBxiXmeg'
+      leagueName: 'Top 14'
+      searchTerm: 'TOP 14 Saison 2025-2026'
+      active: false
+    - channelId: 'UUu98ro1AIOu-4wtZxDRS6Tg'
+      leagueName: 'Pro D2'
+      searchTerm: 'PRO D2 Saison 2025-2026'
+      active: false
+    - channelId: 'UUqn9RhigXvnvVUkKm5iAjxg'
+      leagueName: 'Champions Cup'
+      searchTerm: 'Instant Highlights'
+      active: false
+    - channelId: 'UUqn9RhigXvnvVUkKm5iAjxg'
+      leagueName: 'Challenge Cup'
+      searchTerm: 'Instant Highlights'
+      active: false
+    #     Australia, New Zealand & South Africa
     - channelId: 'UUDOGExGCsrrt_RrGDgLuMww'
       leagueName: 'Super Rugby'
-      searchTerm: 'Super Rugby Pacific 2025'
+      searchTerm: 'Super Rugby Pacific 2026'
       active: false
+    - channelId: 'UUsAPiUMyBjtKamxYGbSUnLA'
+      leagueName: 'Bunnings NPC'
+      searchTerm: 'Bunnings NPC 2025'
+      active: true
+    - channelId: 'UUk8kVitTTdDn2-6SfFqHWSA'
+      leagueName: 'Farah Palmer Cup'
+      searchTerm: 'Farah Palmer Cup 2025'
+      active: true
+    - channelId: 'UUVI5iqtQOsWZwtAg1o3SIAQ'
+      leagueName: 'Currie Cup'
+      searchTerm: 'Currie Cup'
+      active: true
+    #     Other
     - channelId: 'UUuIZRMChWOb0JZu7VvhlMWg'
       leagueName: 'Japan League One - Division One'
       searchTerm: '公式ハイライト'
@@ -21,47 +56,15 @@ parameters:
       leagueName: 'Japan League One - Division Three'
       searchTerm: '公式ハイライト'
       active: false
-    - channelId: 'UULbW1klIl3T1XCp8hHYZGMw'
-      leagueName: 'Premiership Rugby'
-      searchTerm: 'HIGHLIGHTS'
-      active: false
-    - channelId: 'UUWrD2VhZdO-_W8QDBxiXmeg'
-      leagueName: 'Top 14'
-      searchTerm: 'TOP 14 Saison 2024-2025'
-      active: false
-    - channelId: 'UUu98ro1AIOu-4wtZxDRS6Tg'
-      leagueName: 'Pro D2'
-      searchTerm: 'PRO D2 Saison 2024-2025'
-      active: false
     - channelId: 'UUIynwDVqRK7KTUy72_kSBhA'
       leagueName: 'Major League Rugby'
       searchTerm: 'HIGHLIGHTS'
       active: false
-    - channelId: 'UUqn9RhigXvnvVUkKm5iAjxg'
-      leagueName: 'Champions Cup'
-      searchTerm: 'Instant Highlights'
-      active: false
-    - channelId: 'UUqn9RhigXvnvVUkKm5iAjxg'
-      leagueName: 'Challenge Cup'
-      searchTerm: 'Instant Highlights'
-      active: false
-    - channelId: 'UUsAPiUMyBjtKamxYGbSUnLA'
-      leagueName: 'Bunnings NPC'
-      searchTerm: 'Bunnings NPC 2024'
-      active: false
-    - channelId: 'UUsAPiUMyBjtKamxYGbSUnLA'
-      leagueName: 'Farah Palmer Cup'
-      searchTerm: 'Farah Palmer Cup 2024'
-      active: false
-    - channelId: 'UUVI5iqtQOsWZwtAg1o3SIAQ'
-      leagueName: 'Currie Cup'
-      searchTerm: 'Currie Cup'
-      active: false
-#     International Fixtures
+    #     International Fixtures
     - channelId: 'UUDOGExGCsrrt_RrGDgLuMww'
       leagueName: 'The Rugby Championship'
-      searchTerm: 'The Rugby Championship 2024'
-      active: false
+      searchTerm: 'The Rugby Championship 2025'
+      active: true
     - channelId: 'UUE28rwYoaV7jvU6GVzdu_GQ'
       leagueName: 'Pacific Nations Cup'
       searchTerm: 'Match Highlights'
