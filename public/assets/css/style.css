@@ -31,6 +31,34 @@ header.sticky{
     box-shadow: rgba(33,35,38, 0.1) 0 10px 10px -10px;
 }
 
+.site-footer {
+    --bg: #1c2331;     /* deep slate/navy */
+    --fg: #eaeef3;     /* off-white */
+    --muted: #aab4c4;  /* muted grey-blue */
+    --link: #7cc4ff;   /* light blue accent */
+    --card: #2a3245;   /* slightly lighter slate */
+}
+.site-footer{background:var(--bg); color:var(--fg); padding:28px 16px; margin-top:40px}
+.site-footer a{color:var(--link); text-decoration:none}
+.site-footer a:hover,.site-footer a:focus{ text-decoration:underline }
+.footer-inner{display:grid; gap:24px; max-width:1100px; margin:0 auto; grid-template-columns:1.2fr .8fr .8fr}
+@media (max-width:900px){ .footer-inner{grid-template-columns:1fr; text-align:center} .footer-legal{justify-content:center} }
+.footer-col{background:transparent}
+.footer-title{font-size:1.25rem; margin:0 0 .4rem 0}
+.footer-tagline{margin:.25rem 0 .5rem; color:var(--muted)}
+.footer-note{margin:.5rem 0 0; font-size:.95rem; color:var(--muted)}
+.footer-heading{font-size:1rem; margin:0 0 .4rem 0}
+.footer-list{list-style:none; padding:0; margin:.25rem 0 0 0}
+.footer-list li{margin:.3rem 0}
+.footer-legal{display:flex; gap:14px; flex-wrap:wrap; margin-top:.6rem}
+.footer-link{padding:2px 0; border-bottom:1px solid transparent}
+.footer-link:hover{border-color:var(--link)}
+.footer-social{display:flex; gap:10px; margin-top:.4rem}
+.footer-social-btn{width:36px; height:36px; display:inline-grid; place-items:center; background:var(--card); border-radius:10px}
+.footer-social-btn:hover{outline:1px solid var(--link)}
+.footer-social-btn svg{width:18px; height:18px; fill:var(--fg)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08); margin-top:22px; padding-top:14px; text-align:center; color:var(--muted); font-size:.9rem}
+
 .title {
     color: #333333;
     font-family: 'Russo One',sans-serif;
@@ -146,25 +174,6 @@ a:link {
 
 a:visited {
     color: inherit;
-}
-
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.footer-content {
-    max-width: 1200px;
-    justify-content: space-between;
-    align-items: center;
-    margin: 30px auto 0;
-}
-
-.footer-content p {
-    margin: 0;
 }
 
 .clickable {

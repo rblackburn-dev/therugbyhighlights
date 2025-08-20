@@ -17,7 +17,7 @@ class AppController extends AbstractController
      *
      * @return Response
      */
-    #[Route('/', name: 'rugby')]
+    #[Route('/', name: 'homepage')]
     public function index(): Response
     {
         return $this->render('index.html.twig');
@@ -43,6 +43,18 @@ class AppController extends AbstractController
     public function archive(): Response
     {
         return $this->render('archive.html.twig');
+    }
+
+    #[Route('/cookie-policy', name: 'cookiePolicy')]
+    public function cookiePolicy(): Response
+    {
+        return $this->render('cookie_policy.html.twig');
+    }
+
+    #[Route('/privacy-policy', name: 'privacyPolicy')]
+    public function privacyPolicy(): Response
+    {
+        return $this->render('privacy_policy.html.twig');
     }
 
     /**

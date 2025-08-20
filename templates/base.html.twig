@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNFXRDJ6CM"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-MNFXRDJ6CM');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:type" content="website">
@@ -36,14 +27,14 @@
 </head>
 <body>
 <header>
-    <a href="{{ path('rugby') }}" class="title">
+    <a href="{{ path('homepage') }}" class="title">
         The Rugby Highlights
     </a>
 
     <div class="bx bx-menu" id="menu-icon"></div>
 
     <ul class="navbar">
-        <li><a href="{{ path('rugby') }}">Home</a></li>
+        <li><a href="{{ path('homepage') }}">Home</a></li>
         <li><a href="{{ path('fixtures') }}">Fixtures</a></li>
         <li><a href="{{ path('archive') }}">Archive</a></li>
     </ul>
@@ -51,27 +42,115 @@
     {% block body %}
     {% endblock %}
 
+<div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #222; color: #fff; padding: 15px; display: none; z-index: 1000; text-align: center;">
+    <p>🍪 We use cookies to improve your experience. Some are essential, while others (like Google Analytics) help us understand usage. Playing videos may set cookies from YouTube.
+        <button id="accept-cookies" style="margin-left:10px; padding:5px 10px;">Accept</button>
+        <button id="reject-cookies" style="margin-left:10px; padding:5px 10px;">Reject</button>
+        <a href="{{ path('cookiePolicy') }}" style="margin-left:10px; color: #0af;">Learn more</a>
+    </p>
+</div>
+
     {% block footer %}
-    <footer>
-        <div class="footer-content">
-            <h2>About</h2>
-            <br>
-            <p style="font-weight: 100; text-align: center">The Rugby Highlights brings you all the action without the spoilers!<br> Catch up on the latest matches
-                across the top rugby leagues and competitions, including the Six Nations, Super Rugby, United Rugby
-                Championship & more.</p>
-            <br>
-            <a href="https://www.dtmts.com" title="Concept Inspiration" target="_blank">Concept Inspired by Don't Tell Me The Score</a>
-            <br>
-            <br>
-            <p>&copy; <span id="year"></span> The Rugby Highlights.</p>
-        </div>
-    </footer>
+        <footer class="site-footer" role="contentinfo">
+            <div class="footer-inner">
+                <div class="footer-col brand">
+                    <h2 class="footer-title">The Rugby Highlights</h2>
+                    <p class="footer-tagline">
+                        Spoiler-free rugby highlights from the Six Nations, Super Rugby, URC & more.
+                    </p>
+
+                    {% set currentRoute = app.request.attributes.get('_route') %}
+
+                    {% if currentRoute in ['fixtures', 'archive'] %}
+                        <p class="footer-note">Kick-off time is displayed in Central European Time (CET).</p>
+                    {% endif %}
+
+                    <nav class="footer-legal" aria-label="Legal links">
+                        <a href="{{ path('cookiePolicy') }}" class="footer-link">Cookie Policy</a>
+                        <a href="{{ path('privacyPolicy') }}" class="footer-link">Privacy Policy</a>
+                    </nav>
+                </div>
+
+                <div class="footer-col links">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-list">
+                        <li><a href="{{ path('homepage') }}" class="footer-link">Home</a></li>
+                        <li><a href="{{ path('fixtures') }}" class="footer-link">Fixtures</a></li>
+                        <li><a href="{{ path('archive') }}" class="footer-link">Archive</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col follow">
+                    <h3 class="footer-heading">Follow</h3>
+                    <div class="footer-social" role="list">
+{#                        <a class="footer-social-btn" href="https://twitter.com/yourhandle" aria-label="X / Twitter" rel="me noopener" target="_blank">#}
+{#                            <!-- X/Twitter SVG -->#}
+{#                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2H21l-6.52 7.46L22.5 22h-6.77l-4.79-6.26L5.3 22H2.5l6.98-7.98L1.5 2h6.86l4.33 5.73L18.24 2Zm-2.37 18h1.77L8.2 4H6.35l9.52 16Z"/></svg>#}
+{#                        </a>#}
+{#                        <a class="footer-social-btn" href="https://www.instagram.com/yourhandle" aria-label="Instagram" rel="me noopener" target="_blank">#}
+{#                            <!-- Instagram SVG -->#}
+{#                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm6.25-2.9a.85.85 0 1 1-.85.85.85.85 0 0 1 .85-.85Z"/></svg>#}
+{#                        </a>#}
+                        <a class="footer-social-btn" href="mailto:admin@therugbyhighlights.com" aria-label="Email">
+                            <!-- Mail SVG -->
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> The Rugby Highlights.</p>
+            </div>
+        </footer>
+
     {% endblock %}
 <script type="text/javascript" src="{{ asset('/assets/js/script.js') }}"></script>
 <script src="{{ asset('/assets/js/jquery-3.7.1.min.js') }}"></script>
 <script src="{{ asset('/assets/lib/sweet-modal/jquery.sweet-modal.min.js') }}"></script>
 <script>
     document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>
+<script>
+    function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days*24*60*60*1000));
+        document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
+    }
+
+    function getCookie(name) {
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+
+    window.onload = function() {
+        if (!getCookie("cookie_consent")) {
+            document.getElementById("cookie-banner").style.display = "block";
+        }
+        document.getElementById("accept-cookies").onclick = function() {
+            setCookie("cookie_consent", "accepted", 365);
+            document.getElementById("cookie-banner").style.display = "none";
+            loadAnalytics();
+        };
+        document.getElementById("reject-cookies").onclick = function() {
+            setCookie("cookie_consent", "rejected", 365);
+            document.getElementById("cookie-banner").style.display = "none";
+        };
+    };
+
+    function loadAnalytics() {
+        // Load Google Analytics *only if consented*
+        const script = document.createElement("script");
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-MNFXRDJ6CM";
+        script.async = true;
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-MNFXRDJ6CM', { 'anonymize_ip': true }); // GDPR-friendly
+    }
 </script>
 </body>
 </html>
