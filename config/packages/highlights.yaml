@@ -68,4 +68,4 @@ parameters:
     - channelId: 'UUE28rwYoaV7jvU6GVzdu_GQ'
       leagueName: 'Pacific Nations Cup'
       searchTerm: 'Match Highlights'
-      active: false
+      active: true
