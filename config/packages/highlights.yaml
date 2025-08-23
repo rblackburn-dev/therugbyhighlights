@@ -69,3 +69,7 @@ parameters:
       leagueName: 'Pacific Nations Cup'
       searchTerm: 'Match Highlights'
       active: true
+    - channelId: 'UUE28rwYoaV7jvU6GVzdu_GQ'
+      leagueName: "Women's Rugby World Cup"
+      searchTerm: 'Rugby World Cup 2025 | Extended Highlights'
+      active: true
