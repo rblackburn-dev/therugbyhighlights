@@ -35,6 +35,10 @@ parameters:
       leagueName: 'Bunnings NPC'
       searchTerm: 'Bunnings NPC 2025'
       active: true
+    - channelId: 'UUsAPiUMyBjtKamxYGbSUnLA'
+      leagueName: 'Heartland Championship'
+      searchTerm: 'Heartland Championship 2025'
+      active: true
     - channelId: 'UUk8kVitTTdDn2-6SfFqHWSA'
       leagueName: 'Farah Palmer Cup'
       searchTerm: 'Farah Palmer Cup 2025'
