@@ -12,7 +12,6 @@
     <meta name="keywords" content="rugby highlights, spoiler-free rugby highlights, spoiler free rugby highlights">
     <title>{% block title %}The Rugby Highlights - Spoiler-Free Rugby Highlights{% endblock %}</title>
     <link rel="icon" href="{% block icon %}{{ asset('/assets/img/favicon.ico') }}{% endblock %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/assets/img/apple-touch-icon.png') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,15 +20,14 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     {% block stylesheets %}
     {% endblock %}
-
-    {% block javascripts %}
-    {% endblock %}
 </head>
 <body>
 <header>
-    <a href="{{ path('homepage') }}" class="title">
-        The Rugby Highlights
-    </a>
+    <h1>
+        <a href="{{ path('homepage') }}" class="title">
+            The Rugby Highlights
+        </a>
+    </h1>
 
     <div class="bx bx-menu" id="menu-icon"></div>
 
@@ -49,62 +47,53 @@
         <a href="{{ path('cookiePolicy') }}" style="margin-left:10px; color: #0af;">Learn more</a>
     </p>
 </div>
+{% block footer %}
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-col brand">
+                <h2 class="footer-title">The Rugby Highlights</h2>
+                <p class="footer-tagline">
+                    Spoiler-free rugby highlights from the Six Nations, Super Rugby, United Rugby Championship, Premiership Rugby, Top 14, Champions Cup & more.
+                </p>
 
-    {% block footer %}
-        <footer class="site-footer" role="contentinfo">
-            <div class="footer-inner">
-                <div class="footer-col brand">
-                    <h2 class="footer-title">The Rugby Highlights</h2>
-                    <p class="footer-tagline">
-                        Spoiler-free rugby highlights from the Six Nations, Super Rugby, URC & more.
-                    </p>
+                {% set currentRoute = app.request.attributes.get('_route') %}
 
-                    {% set currentRoute = app.request.attributes.get('_route') %}
+                {% if currentRoute in ['fixtures', 'archive'] %}
+                    <p class="footer-note">Kick-off time is displayed in Central European Time (CET).</p>
+                {% endif %}
 
-                    {% if currentRoute in ['fixtures', 'archive'] %}
-                        <p class="footer-note">Kick-off time is displayed in Central European Time (CET).</p>
-                    {% endif %}
-
-                    <nav class="footer-legal" aria-label="Legal links">
-                        <a href="{{ path('cookiePolicy') }}" class="footer-link">Cookie Policy</a>
-                        <a href="{{ path('privacyPolicy') }}" class="footer-link">Privacy Policy</a>
-                    </nav>
-                </div>
-
-                <div class="footer-col links">
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul class="footer-list">
-                        <li><a href="{{ path('homepage') }}" class="footer-link">Home</a></li>
-                        <li><a href="{{ path('fixtures') }}" class="footer-link">Fixtures</a></li>
-                        <li><a href="{{ path('archive') }}" class="footer-link">Archive</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col follow">
-                    <h3 class="footer-heading">Contact</h3>
-                    <div class="footer-social" role="list">
-{#                        <a class="footer-social-btn" href="https://twitter.com/yourhandle" aria-label="X / Twitter" rel="me noopener" target="_blank">#}
-{#                            <!-- X/Twitter SVG -->#}
-{#                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2H21l-6.52 7.46L22.5 22h-6.77l-4.79-6.26L5.3 22H2.5l6.98-7.98L1.5 2h6.86l4.33 5.73L18.24 2Zm-2.37 18h1.77L8.2 4H6.35l9.52 16Z"/></svg>#}
-{#                        </a>#}
-{#                        <a class="footer-social-btn" href="https://www.instagram.com/yourhandle" aria-label="Instagram" rel="me noopener" target="_blank">#}
-{#                            <!-- Instagram SVG -->#}
-{#                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5Zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5Zm6.25-2.9a.85.85 0 1 1-.85.85.85.85 0 0 1 .85-.85Z"/></svg>#}
-{#                        </a>#}
-                        <a class="footer-social-btn" href="mailto:admin@therugbyhighlights.com" aria-label="Email">
-                            <!-- Mail SVG -->
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
-                        </a>
-                    </div>
-                </div>
+                <nav class="footer-legal" aria-label="Legal links">
+                    <a href="{{ path('cookiePolicy') }}" class="footer-link">Cookie Policy</a>
+                    <a href="{{ path('privacyPolicy') }}" class="footer-link">Privacy Policy</a>
+                </nav>
             </div>
 
-            <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> The Rugby Highlights.</p>
+            <div class="footer-col links">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-list">
+                    <li><a href="{{ path('homepage') }}" class="footer-link">Home</a></li>
+                    <li><a href="{{ path('fixtures') }}" class="footer-link">Fixtures</a></li>
+                    <li><a href="{{ path('archive') }}" class="footer-link">Archive</a></li>
+                </ul>
             </div>
-        </footer>
 
-    {% endblock %}
+            <div class="footer-col follow">
+                <h3 class="footer-heading">Contact</h3>
+                <div class="footer-social" role="list">
+                    <a class="footer-social-btn" href="mailto:admin@therugbyhighlights.com" aria-label="Email">
+                        <!-- Mail SVG -->
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; <span id="year"></span> The Rugby Highlights.</p>
+        </div>
+    </footer>
+{% endblock %}
+
 <script type="text/javascript" src="{{ asset('/assets/js/script.js') }}"></script>
 <script src="{{ asset('/assets/js/jquery-3.7.1.min.js') }}"></script>
 <script src="{{ asset('/assets/lib/sweet-modal/jquery.sweet-modal.min.js') }}"></script>
@@ -152,5 +141,7 @@
         gtag('config', 'G-MNFXRDJ6CM', { 'anonymize_ip': true }); // GDPR-friendly
     }
 </script>
+{% block javascripts %}
+{% endblock %}
 </body>
 </html>
