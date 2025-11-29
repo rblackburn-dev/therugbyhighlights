@@ -78,7 +78,6 @@ class YoutubeService
     public function getEmbedUrl($videos, $fixtures): void
     {
         $videoString = 'https://www.youtube.com/embed/';
-        $altVideoString = 'https://www.youtube.com/watch?v=';
 
         foreach($videos as $video) {
 
@@ -112,9 +111,7 @@ class YoutubeService
                 }
 
                 if ($found) {
-                    $videoStringToUpdate = ($fixture['league'] == 'Top 14' || $fixture['league'] == 'Pro D2')
-                        ? $altVideoString . $video[1]
-                        : $videoString . $video[1];
+                    $videoStringToUpdate = $videoString . $video[1];
 
                     $this->fixtureRepository->update($fixture['id'], $videoStringToUpdate);
 
