@@ -67,11 +67,7 @@ export default {
 
       header.classList.toggle ("hide-header");
 
-      if(highlights === 'NoYouTubeVideo') {
-        $.sweetModal({
-          content: '<video width="660" height="415" controls><source src="/assets/video/'+homeTeam+' v '+awayTeam+'.mp4" type="video/mp4"></video>',
-        });
-      } else if(highlights === 'NoVideo') {
+      if(highlights === 'NoVideo') {
         $.sweetModal({
           content: '<h1>Highlights unavailable, apologies for the inconvenience.</h1>',
         });
