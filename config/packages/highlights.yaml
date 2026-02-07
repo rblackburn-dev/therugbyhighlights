@@ -51,15 +51,15 @@ parameters:
     - channelId: 'UUuIZRMChWOb0JZu7VvhlMWg'
       leagueName: 'Japan League One - Division One'
       searchTerm: '公式ハイライト'
-      active: false
+      active: true
     - channelId: 'UUuIZRMChWOb0JZu7VvhlMWg'
       leagueName: 'Japan League One - Division Two'
       searchTerm: '公式ハイライト'
-      active: false
+      active: true
     - channelId: 'UUuIZRMChWOb0JZu7VvhlMWg'
       leagueName: 'Japan League One - Division Three'
       searchTerm: '公式ハイライト'
-      active: false
+      active: true
     - channelId: 'UUIynwDVqRK7KTUy72_kSBhA'
       leagueName: 'Major League Rugby'
       searchTerm: 'HIGHLIGHTS'
