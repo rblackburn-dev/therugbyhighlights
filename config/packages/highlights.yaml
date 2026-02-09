@@ -30,7 +30,7 @@ parameters:
     - channelId: 'UUDOGExGCsrrt_RrGDgLuMww'
       leagueName: 'Super Rugby'
       searchTerm: 'Super Rugby Pacific 2026'
-      active: false
+      active: true
     - channelId: 'UUsAPiUMyBjtKamxYGbSUnLA'
       leagueName: 'Bunnings NPC'
       searchTerm: 'Bunnings NPC 2025'
